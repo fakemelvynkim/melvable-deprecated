@@ -96,6 +96,4 @@ die() {
 }
 # main
 check_requirements
-echo "$DIR_MELVABLE is dir melvable"
-echo "${DIR_MELVABLE_IMAGE} is image dir"
 parse_user_args "$@"
