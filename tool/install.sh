@@ -4,6 +4,12 @@
 set -e
 
 check_requirements() {
+  # Check sudo privilage
+  if test $UID != 0; then
+      echo "Run this command with sudo."
+      echo "Try 'sudo !!'"
+      exit 1
+  fi
   # Check if melvable directory variable is set 
   if [ ! -n "${DIR_MELVABLE}" ]; then
       DIR_MELVABLE=~/.melvable
@@ -11,7 +17,20 @@ check_requirements() {
 
   # Die if melvable directoy exists 
   if [ -d "${DIR_MELVABLE}" ]; then
-      die "melvable exists in ${DIR_MELVABLE}"
+     echo "melvable exists in ${DIR_MELVABLE}"
+     read -p "Do you wish to re-install melvable? [Y]es/[N]o: \c" prompt_yes_or_no
+     case $prompt_yes_or_no in 
+        [Yy]*) 
+            rm -rf ${DIR_MELVABLE}
+            wget --no-check-certificate https://raw.github.com/melvkim/melvable/master/tool/install.sh -O - | sudo sh
+            ;;
+        [Nn]*)
+            die_on_warning "Melvable not installed."
+            ;;
+        *)
+            die "Enter 'Yes' or 'No'"
+            ;;
+     esac
   fi
 }
 
@@ -35,9 +54,14 @@ display_welcome() {
   \ls ${DIR_MELVABLE} 
 }
 
+die_on_warning() {
+    echo "WARNING: $1"
+    exit 2
+    
+}
 die() {
     echo "ERROR: $1"
-    exit
+    exit 1
 }
 
 # main
