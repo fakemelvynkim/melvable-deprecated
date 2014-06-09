@@ -2,7 +2,7 @@
 # Author: Melv Kim <melvkim@gmail.com>
 # Project Home: https://github.com/melvkim/melvable
 set -e
-DIR_MELVABLE_IMAGE="${DIR_MELVABLE}/image"
+DIR_MELVABLE_IMAGE=""
 FULL_USAGE='Example usage:
     melvable list
     melvable install IMAGE_NAME
@@ -17,6 +17,7 @@ check_requirements() {
     # Check if melvable directory variable is set
     if [ -z "${DIR_MELVABLE}" ]; then
         DIR_MELVABLE=~/.melvable
+        DIR_MELVABLE_IMAGE="${DIR_MELVABLE}/image"
     fi
     
     # Die if melvable directory is not found
@@ -94,6 +95,6 @@ die() {
     exit 1
 }
 # main
-echo "$DIR_MELVABLE is dir melvable"
 check_requirements
+echo "$DIR_MELVABLE is dir melvable"
 parse_user_args "$@"
