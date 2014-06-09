@@ -12,7 +12,7 @@ If you're looking for a similar project for Windows operating system, check out 
 
     For more installation options, refer to [Installation](#installation) section below.
 
-2. (TODO) Get list of script images. 
+2. Get list of script images. 
     
         melvable list
 
