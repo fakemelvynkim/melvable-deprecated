@@ -53,7 +53,7 @@ parse_user_args() {
         2)
             case "$1" in
                 install)
-                    if [ -f "$2" ]; then
+                    if test -f "${DIR_MELVABLE_IMAGE}/$2"; then
                         install_image "$2"
                     else
                         die "Unable to locate the image, $2"
@@ -97,4 +97,5 @@ die() {
 # main
 check_requirements
 echo "$DIR_MELVABLE is dir melvable"
+echo "${DIR_MELVABLE_IMAGE} is image dir"
 parse_user_args "$@"
