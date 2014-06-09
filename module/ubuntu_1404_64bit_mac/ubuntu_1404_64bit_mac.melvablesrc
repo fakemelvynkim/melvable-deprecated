@@ -1,0 +1,204 @@
+##################################################################
+#
+# Intialize
+#
+##################################################################
+Intilize() {
+    sudo apt-get update -y &&
+    sudo apt-get upgrade -y &&
+    # Remove unwanted software
+    # sudo apt-get remove transmission-* -y &&
+    # sudo apt-get purge transmission-gtk -y &&
+    # sudo apt-get remove unity-lens-shopping && # ubuntu 12.10 only!
+    echo 'Finished: Initialize'
+}
+
+##################################################################
+#
+# DevelopTall
+#
+##################################################################
+# TODO SEPARATE installs requiring user prompt from the rest
+InstallDevelopTall() {
+    # Develop.tool
+    # Develop.tool.ack-grep
+    sudo apt-get install ack-grep -y &&
+    # Develop.tool.curl
+    sudo apt-get install curl -y &&
+    # Develop.tool.zsh
+    sudo apt-get install zsh -y &&
+     
+    # Develop.environment.python
+    sudo apt-get install python-software-properties -y &&
+    # Develop.environment.java
+    sudo add-apt-repository ppa:webupd8team/java &&
+    sudo apt-get update -y &&
+    sudo apt-get install oracle-java7-installer -y&& #java8 soon :)
+    sudo update java-alternatives -s java-7-oracle &&
+    sudo apt-get install oracle-java7-set-default -y&&
+    sudo apt-get install default-jre default-jdk -y&& 
+    echo "JAVA_HOME=$(sudo update-alternatives --list java | grep oracle | grep 7)" | sudo tee -a /etc/environment &&
+    # Develop.environment.maven
+    sudo apt-get install maven -y &&
+    # Develop.environment.vcs
+    sudo apt-get install git -y &&
+    # Develop.environment.ruby
+    # (REQUIRED) To finish installation for ruby, 
+    # change terminal emulator settings to allow
+    # execute commands as login shell.
+    curl -sSL https://get.rvm.io | bash -s stable \
+            --rails \
+            --ruby \
+            --ruby=1.9.3 &&
+
+
+    # Develop.editor.Vim
+    sudo apt-get install vim -y &&
+    # Develop.editor.Sublime Text 3
+    sudo add-apt-repository ppa:webupd8team/sublime-text-3 &&
+    sudo apt-get update -y &&
+    sudo apt-get install sublime-text -y &&
+
+    echo 'Finished: InstallDevelopTall'
+}
+##################################################################
+#
+# DevelopGrande
+#
+##################################################################w
+InstallDevelopGrande() {
+    InstallDevelopTall
+
+    # Develop.write
+    sudo apt-get install myspell-nb -y &&
+
+    # Develop.product
+    sudo apt-get install umlet -y && # UML Diagram tool
+
+    # Develop.design
+    sudo apt-get install gimp -y &&
+    sudo apt-get install inkscape -y &&
+
+    echo 'Finished: InstallDevelopGrande'
+}
+
+##################################################################
+#
+# DevelopVenti
+#
+##################################################################w
+InstallDevelopVenti() {
+    InstallDevelopGrande
+
+    # Develop.editor.latex
+    sudo apt-get install texlive -y &&
+    sudo apt-get install texlive-latex3 -y &&
+    sudo apt-get install texlive-latex-extra -y &&
+    sudo apt-get install texlive-extra-utils -y &&
+    sudo apt-get install texlive-bibtex-extra -y &&
+    sudo apt-get install liblatex-driver-perl -y &&
+
+    echo 'Finished: InstallDevelopVenti'
+}
+
+##################################################################
+#
+# Explore
+#
+##################################################################
+InstallExplore() {
+    # Explore.chrome
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - &&
+    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' &&
+    sudo apt-get update -y &&
+    sudo apt-get install google-chrome-stable -y &&
+    sudo apt-get install google-chrome-beta -y &&
+
+    # Explore.bittorrent 
+    sudo apt-get install qbittorrent -y &&
+
+    echo 'Finished: InstallExplore'
+}
+
+##################################################################
+#
+# Watch
+#
+##################################################################
+InstallWatch() {
+    # Watch.vlc
+    sudo apt-get install vlc -y &&
+    sudo apt-get install browser-plugin-vlc -y &&
+
+    # Watch.ffmpeg
+    sudo apt-get install mplayer mencoder ffmpeg -y &&
+
+    echo 'Finished: InstallWatch'
+}
+
+##################################################################
+#
+# Optimize
+#
+##################################################################
+InstallOptimize() {
+    # Optimize.windows
+    sudo apt-get install devilspie -y &&
+    # Optimize.desktop
+    sudo apt-get install dconf-tools -y &&
+
+    echo 'Finished: InstallOptimize'
+}
+
+##################################################################
+#
+# Time
+#
+##################################################################
+InstallTime() {
+    # Time.todo.Task Warrior
+    sudo apt-get install task -y &&
+
+    echo 'Finished: InstallTime'
+}
+##################################################################
+#
+# Sudo
+#
+##################################################################
+InstallSudo() {
+    # Sudo.compatibility
+    sudo apt-get install wine -y &&
+    # Sudo.compatibility.Fix Sharing Issue with Host
+    # For more information, visit:
+    # http://askubuntu.com/questions/74825/why-dont-shared-files-show-up-in-hgfs
+    sudo vmware-config-tools.pl -d --clobber-kernel-modules=vmhgfs &&
+
+    echo 'Finished: InstallSudo'
+}
+
+##################################################################
+#
+# Server
+#
+##################################################################
+InstallServerLamp() {
+    sudo apt-get install apache2 -y && 
+    sudo service apache2 restart &&
+    sudo apt-get install libapache2-mod-php5 -y &&
+    sudo a2enmod php5 &&
+    sudo service apache2 restart &&
+    sudo apt-get install libapache2-mod-auth-mysql -y &&
+    sudo apt-get install php5-mysql -y &&
+    sudo apt-get install phpmyadmin -y &&
+    echo "Include /etc/phpmyadmin/apache.conf" | sudo tee -a /etc/apache2/apache2.conf &&
+    sudo touch /var/www/index.php &&
+    echo "<?php echo phpinfo(); ?>" | sudo tee /var/www/index.php &&
+    sudo rm /var/www/index.html &&
+    sudo usermod -a -G www endre &&
+    sudo service apache2 restart &&
+    google-chrome-stabe localhost &&
+    google-chrome-stabe localhost/phpmyadmin &&
+
+    echo 'Finished: InstallServerLamp'
+}
