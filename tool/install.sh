@@ -1,8 +1,6 @@
 #!/bin/sh
 # Author: Melv Kim <melvkim@gmail.com>
 # Project Home: https://github.com/melvkim/melvable
-main "$@"
-
 set -e
 
 check_requirements() {
@@ -25,10 +23,10 @@ clone_melvable() {
 
 add_symbolic_link() {
   if -h "/usr/local/bin/melvable"; then
-    die "symbolic link, /usr/local/bin/melvable, already exists."
-  else
-    ln -s "${SH_MELVABLE}" "/usr/local/bin/melvable"
+    echo "Replacing melvable symbolic link.."
+    rm "/usr/local/bin/melvable"
   fi
+  ln -s "${DIR_MELVABLE}/tool/melvable.sh" "/usr/local/bin/melvable"
 }
 
 display_welcome() {
@@ -42,9 +40,8 @@ die() {
     exit
 }
 
-main() {
-  check_requirements
-  clone_melvable
-  add_symbolic_link
-  display_welcome
-}
+# main
+check_requirements
+clone_melvable
+add_symbolic_link
+display_welcome
