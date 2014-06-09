@@ -72,7 +72,7 @@ parse_user_args() {
 }
 
 install_image() {
-    command "${DIR_MELVABLE_IMAGE}/{$1}"
+    command "${DIR_MELVABLE_IMAGE}/$1"
 }
 
 list_image() {
