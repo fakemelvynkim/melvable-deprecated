@@ -8,7 +8,7 @@ If you're looking for a similar project for Windows operating system, check out 
 
 1. Install melvable.
 
-        curl -L https://raw.github.com/melvkim/melvable/master/tool/install.sh | sh
+        wget --quiet --no-check-certificate https://raw.github.com/melvkim/melvable/master/tool/install.sh -O - | sh
 
     For more installation options, refer to [Installation](#installation) section below.
 
@@ -27,11 +27,11 @@ If you're looking for a similar project for Windows operating system, check out 
 
 #### via `curl`
 
-    curl -L https://raw.github.com/melvkim/melvable/master/tool/install.sh | sh
+    curl --silent -L https://raw.github.com/melvkim/melvable/master/tool/install.sh | sh
 
 #### via `wget`
 
-    wget --no-check-certificate https://raw.github.com/melvkim/melvable/master/tool/install.sh -O - | sh
+    wget --quiet --no-check-certificate https://raw.github.com/melvkim/melvable/master/tool/install.sh -O - | sh
 
 
 ### custom path

@@ -15,7 +15,9 @@ check_requirements() {
      read -p "Do you wish to re-install melvable? [Y]es/[N]o: \c" prompt_yes_or_no
      case $prompt_yes_or_no in 
         [Yy]*) 
+            "Removing existing melvable directory.."
             rm -rf ${DIR_MELVABLE}
+            "Cloning melvable.."
             wget --quiet --no-check-certificate https://raw.github.com/melvkim/melvable/master/tool/install.sh -O - | sh
             ;;
         [Nn]*)
@@ -37,9 +39,9 @@ clone_melvable() {
 add_symbolic_link() {
   if test -h "/usr/local/bin/melvable"; then
     echo "Replacing melvable symbolic link.."
-    rm "/usr/local/bin/melvable"
+    sudo rm "/usr/local/bin/melvable"
   fi
-  ln -s "${DIR_MELVABLE}/tool/melvable.sh" "/usr/local/bin/melvable"
+  sudo ln -s "${DIR_MELVABLE}/tool/melvable.sh" "/usr/local/bin/melvable"
 }
 
 display_welcome() {
