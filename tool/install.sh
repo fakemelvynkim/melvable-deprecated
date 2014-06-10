@@ -63,7 +63,7 @@ add_variable_to_shell_resource() {
   fi
 
   # Add variable to shell resource file
-  echo "DIR_MELVABLE=\"${DIR_MELVABLE}\"" >> "${HOME}/${SHELL_RC}"
+  echo "export DIR_MELVABLE=\"${DIR_MELVABLE}\"" >> "${HOME}/${SHELL_RC}"
   . "${HOME}/${SHELL_RC}"
 }
 
