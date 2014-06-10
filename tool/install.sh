@@ -6,7 +6,7 @@ set -e
 check_requirements() {
   # Check if melvable directory variable is set 
   if [ ! -n "${DIR_MELVABLE}" ]; then
-      DIR_MELVABLE=~/.melvable
+      export DIR_MELVABLE=~/.melvable
   fi
 
   # Die if melvable directoy exists 
@@ -55,7 +55,7 @@ add_variable_to_shell_resource() {
     SHELL_RC=".bashrc"
   else
     echo "Your shell is not recognized. Add the following line in your resource file manually:"
-    echo "DIR_MELVABLE=\"${DIR_MELVABLE}\""
+    echo "export DIR_MELVABLE=\"${DIR_MELVABLE}\""
     return
   fi
   
