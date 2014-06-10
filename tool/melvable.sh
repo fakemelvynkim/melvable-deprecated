@@ -1,7 +1,6 @@
 #!/bin/sh
 # Author: Melv Kim <melvkim@gmail.com>
 # Project Home: https://github.com/melvkim/melvable
-set -e
 DIR_MELVABLE_IMAGE=""
 FULL_USAGE='Example usage:
     melvable list

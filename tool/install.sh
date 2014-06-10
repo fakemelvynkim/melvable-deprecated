@@ -1,8 +1,6 @@
 #!/bin/sh
 # Author: Melv Kim <melvkim@gmail.com>
 # Project Home: https://github.com/melvkim/melvable
-set -e
-
 check_requirements() {
   # Check if melvable directory variable is set 
   if [ ! -n "${DIR_MELVABLE}" ]; then
