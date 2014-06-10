@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ../module/ubuntu_1404_64bit_mac/ubuntu_1404_64bit_mac.melvablesrc
+. ${DIR_MELVABLE}/module/ubuntu_1404_64bit_mac/ubuntu_1404_64bit_mac.melvablesrc
 
 Intialize
 InstallDevelopTall
