@@ -4,7 +4,7 @@
 check_requirements() {
   # Check if melvable directory variable is set 
   if [ ! -n "${DIR_MELVABLE}" ]; then
-      export DIR_MELVABLE=~/.melvable
+      export DIR_MELVABLE=${HOME}/.melvable
   fi
 
   # Die if melvable directoy exists 
