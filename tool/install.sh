@@ -1,10 +1,11 @@
 #!/bin/sh
 # Author: Melv Kim <melvkim@gmail.com>
 # Project Home: https://github.com/melvkim/melvable
+export DIR_MELVABLE=""
 check_requirements() {
   # Check if melvable directory variable is set 
   if [ ! -n "${DIR_MELVABLE}" ]; then
-      export DIR_MELVABLE=${HOME}/.melvable
+      DIR_MELVABLE=${HOME}/.melvable
   fi
 
   # Die if melvable directoy exists 
@@ -13,9 +14,9 @@ check_requirements() {
      read -p "Do you wish to re-install melvable? [Y]es/[N]o: " prompt_yes_or_no
      case $prompt_yes_or_no in 
         [Yy]*) 
-            "Removing existing melvable directory.."
+            echo "Removing existing melvable directory.."
             rm -rf ${DIR_MELVABLE}
-            "Cloning melvable.."
+            echo "Cloning melvable.."
             wget --quiet --no-check-certificate https://raw.github.com/melvkim/melvable/master/tool/install.sh -O - | sh
             ;;
         [Nn]*)
