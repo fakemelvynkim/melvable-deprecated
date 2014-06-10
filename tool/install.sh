@@ -10,7 +10,7 @@ check_requirements() {
   # Die if melvable directoy exists 
   if [ -d "${DIR_MELVABLE}" ]; then
      echo "melvable exists in ${DIR_MELVABLE}"
-     read -p "Do you wish to re-install melvable? [Y]es/[N]o: \c" prompt_yes_or_no
+     read -p "Do you wish to re-install melvable? [Y]es/[N]o: " prompt_yes_or_no
      case $prompt_yes_or_no in 
         [Yy]*) 
             "Removing existing melvable directory.."
