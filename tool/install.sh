@@ -48,6 +48,7 @@ add_variable_to_shell_resource() {
   
   echo "Adding variables to shell resource.."
   
+  # Get shell resource file
   if test -n "$(echo "${SHELL}" | grep zsh)"; then
     SHELL_RC=".zshrc"
   elif test -n "$(echo "${SHELL}" | grep bash)"; then

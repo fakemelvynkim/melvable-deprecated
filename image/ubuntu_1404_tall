@@ -2,7 +2,7 @@
 
 . ${DIR_MELVABLE}/module/ubuntu_1404_64bit_mac/ubuntu_1404_64bit_mac.melvablesrc
 
-Intialize
+Initialize
 InstallDevelopTall
 # InstallExplore
 # InstallWatch
