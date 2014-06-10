@@ -17,13 +17,14 @@ check_requirements() {
     # Check if melvable directory variable is set
     if [ -z "${DIR_MELVABLE}" ]; then
         DIR_MELVABLE=~/.melvable
-        DIR_MELVABLE_IMAGE="${DIR_MELVABLE}/image"
     fi
     
     # Die if melvable directory is not found
     if [ ! -d "${DIR_MELVABLE}" ]; then
         die "${INSTALL_INSTRUCTIONS}"
     fi
+    
+    DIR_MELVABLE_IMAGE="${DIR_MELVABLE}/image"
 }
 
 

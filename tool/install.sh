@@ -44,6 +44,31 @@ add_symbolic_link() {
   sudo ln -s "${DIR_MELVABLE}/tool/melvable.sh" "/usr/local/bin/melvable"
 }
 
+add_variable_to_shell_resource() {
+  local SHELL_RC=""
+  
+  echo "Adding variables to shell resource.."
+  
+  if test -n "$(echo "${SHELL}" | grep zsh)"; then
+    SHELL_RC=".zshrc"
+  elif test -n "$(echo "${SHELL}" | grep bash)"; then
+    SHELL_RC=".bashrc"
+  else
+    echo "Your shell is not recognized. Add the following line in your resource file manually:"
+    echo "DIR_MELVABLE=\"${DIR_MELVABLE}\""
+    return
+  fi
+  
+  # Return if $DIR_MELVABLE is already added to resource file
+  if test -n "$(grep 'DIR_MELVABLE' "${HOME}/${SHELL_RC}")"; then
+    return
+  fi
+
+  # Add variable to shell resource file
+  echo "DIR_MELVABLE=\"${DIR_MELVABLE}\"" >> "${HOME}/${SHELL_RC}"
+  . "${HOME}/${SHELL_RC}"
+}
+
 display_welcome() {
   echo "melvable is successfully installed."
   echo "Available images to install are:"
@@ -64,4 +89,5 @@ die() {
 check_requirements
 clone_melvable
 add_symbolic_link
+add_variable_to_shell_resource
 display_welcome
